@@ -1,0 +1,6 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+/.idea/.idea.ConsoleApp1/.idea/encodings.xml
