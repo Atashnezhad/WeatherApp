@@ -11,7 +11,7 @@ namespace ConsoleApp1
             string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
             // Construct the full path to the JSON file
-            string jsonFilePath = Path.Combine(executableDirectory, "app_settings.json");
+            string jsonFilePath = "C:\\Users\\atash\\RiderProjects\\ConsoleApp1\\app_settings.json";
             
             string parentDirectory = Directory.GetParent(Directory.GetParent(executableDirectory).FullName).FullName;
 
