@@ -1,0 +1,7 @@
+﻿{
+  "appame": "MyApp",
+  "version": "1.0.0",
+  "ConnectionStrings": {
+    "BaseUrl": "your_connection_string_here"
+  }
+}

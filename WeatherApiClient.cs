@@ -7,22 +7,23 @@ namespace ConsoleApp1
     public class WeatherApiClient
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "https://archive-api.open-meteo.com/v1/archive";
+        private readonly string _baseUrl;
 
-        public WeatherApiClient()
+        public WeatherApiClient(string baseUrl)
         {
-            _httpClient = new HttpClient();
+            this._httpClient = new HttpClient();
+            this._baseUrl = baseUrl;
         }
 
         public async Task<string> GetWeatherData(double latitude, double longitude, DateTime startDate,
             DateTime endDate, string fields)
         {
             string url =
-                $"{BaseUrl}?latitude={latitude}&longitude={longitude}&start_date={startDate:yyyy-MM-dd}&end_date={endDate:yyyy-MM-dd}&hourly={fields}";
+                $"{this._baseUrl}?latitude={latitude}&longitude={longitude}&start_date={startDate:yyyy-MM-dd}&end_date={endDate:yyyy-MM-dd}&hourly={fields}";
 
             try
             {
-                HttpResponseMessage response = await _httpClient.GetAsync(url);
+                HttpResponseMessage response = await this._httpClient.GetAsync(url);
                 response.EnsureSuccessStatusCode(); // Throw an exception if the status code indicates an error
                 return await response.Content.ReadAsStringAsync();
             }

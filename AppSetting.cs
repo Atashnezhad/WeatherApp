@@ -2,13 +2,16 @@
 {
     public class AppSettings
     {
-        public string AppName { get; set; }
-        public string Version { get; set; }
+        public string appname { get; set; }
+        public string version { get; set; }
         public ConnectionStrings ConnectionStrings { get; set; }
     }
 
     public class ConnectionStrings
     {
-        public string DatabaseConnection { get; set; }
+        public string BaseUrl { get; set; }
     }
 }
+
+
+

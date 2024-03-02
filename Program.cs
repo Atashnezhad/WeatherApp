@@ -1,5 +1,5 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System;
+using System.IO;
 
 namespace ConsoleApp1
 {
@@ -7,30 +7,51 @@ namespace ConsoleApp1
     {
         static async Task Main(string[] args)
         {
-            // run the some functionality
-            // SomeFunctionality.Run();
+            // Get the directory of the executable
+            string executableDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-            // Create an instance of the AppSettings class
-            // Read the JSON file
-            string json = File.ReadAllText("appsettings.json");
+            // Construct the full path to the JSON file
+            string jsonFilePath = Path.Combine(executableDirectory, "app_settings.json");
+            
+            string parentDirectory = Directory.GetParent(Directory.GetParent(executableDirectory).FullName).FullName;
 
-            // Deserialize the JSON into an AppSettings object
-            AppSettings appSettings = JsonSerializer.Deserialize<AppSettings>(json);
 
-            // Access the connection string property
-            string connectionString = appSettings.ConnectionStrings.DatabaseConnection;
-
-            string apiUrl = connectionString; // Replace this with your actual API URL
-            // make an instance of the ApiHandler class
-            ApiHandler apiHandler = new ApiHandler();
-            List<MyDataClass.Person> persons = await apiHandler.GetPersonsFromApi(apiUrl);
-
-            if (persons != null)
+            try
             {
-                foreach (MyDataClass.Person person in persons)
+                // Read the JSON file contents as a string
+                string json = File.ReadAllText(jsonFilePath);
+
+                // Base URL of the weather API
+                string baseUrl = "https://archive-api.open-meteo.com/v1/archive";
+
+                // Initialize the WeatherApiClient
+                WeatherApiClient weatherApiClient = new WeatherApiClient(baseUrl);
+
+                // Specify the parameters for weather data retrieval
+                double latitude = 37.8267;
+                double longitude = -122.4233;
+                DateTime startDate = DateTime.Now.AddDays(-7);
+                DateTime endDate = DateTime.Now;
+                string fields = "temperature_2m,precipitation";
+
+                try
                 {
-                    Console.WriteLine($"Id: {person.name}, Name: {person.age}, Age: {person.emailAddress}");
+                    // Call GetWeatherData asynchronously and wait for the result
+                    string weatherData = await weatherApiClient.GetWeatherData(latitude, longitude, startDate, endDate, fields);
+
+                    // Print the response to the console
+                    Console.WriteLine(weatherData);
                 }
+                catch (Exception ex)
+                {
+                    // Handle any exceptions
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions related to file reading
+                Console.WriteLine($"Error reading JSON file: {ex.Message}");
             }
         }
     }
