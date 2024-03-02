@@ -1,10 +1,7 @@
-﻿
-
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace ConsoleApp1
 {
-
     public class SomeFunctionality
     {
         public static void Run()
