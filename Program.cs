@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.Json;
 
 namespace ConsoleApp1
 {
@@ -41,6 +42,12 @@ namespace ConsoleApp1
 
                     // Print the response to the console
                     Console.WriteLine(weatherData);
+                    // parse the JSON string to a MyDataClass.WeatherObject object
+                    MyDataClass.WeatherObject weatherObject = JsonSerializer.Deserialize<MyDataClass.WeatherObject>(weatherData);
+                    // now save the parsed data in a new JSON file in the resources folder
+                    string newJsonFilePath = Path.Combine(parentDirectory, "resources", "weather_data.json");
+                    File.WriteAllText(newJsonFilePath, weatherData);
+                    
                 }
                 catch (Exception ex)
                 {
