@@ -29,12 +29,9 @@ namespace ConsoleApp1
             {
                 foreach (MyDataClass.Person person in persons)
                 {
-                    Console.WriteLine($"Id: {person.Name}, Name: {person.Age}, Age: {person.EmailAddress}");
+                    Console.WriteLine($"Id: {person.name}, Name: {person.age}, Age: {person.emailAddress}");
                 }
             }
-
-            
-            
         }
     }
 }

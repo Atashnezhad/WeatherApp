@@ -12,9 +12,9 @@ namespace ConsoleApp1
             // Create an instance of the Person class
             MyDataClass.Person person = new MyDataClass.Person
             {
-                Name = "John Doe",
-                Age = 30,
-                EmailAddress = "john.doe@example.com"
+                name = "John Doe",
+                age = 30,
+                emailAddress = "john.doe@example.com"
             };
 
             // Serialize the Person object to JSON
@@ -25,9 +25,9 @@ namespace ConsoleApp1
             // Deserialize the JSON back to a Person object
             MyDataClass.Person deserializedPerson = JsonSerializer.Deserialize<MyDataClass.Person>(json);
             Console.WriteLine("\nDeserialized Person object:");
-            Console.WriteLine($"Name: {deserializedPerson.Name}");
-            Console.WriteLine($"Age: {deserializedPerson.Age}");
-            Console.WriteLine($"EmailAddress: {deserializedPerson.EmailAddress}");
+            Console.WriteLine($"Name: {deserializedPerson.name}");
+            Console.WriteLine($"Age: {deserializedPerson.age}");
+            Console.WriteLine($"EmailAddress: {deserializedPerson.emailAddress}");
         }
     }
 }
