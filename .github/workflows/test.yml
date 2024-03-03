@@ -1,0 +1,24 @@
+﻿name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Framework
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '4.8.x'
+
+      - name: Build and Run Project
+        run: |
+          cd ConsoleApp1
+          build.bat
