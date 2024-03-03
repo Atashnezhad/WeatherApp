@@ -36,4 +36,4 @@ jobs:
     - name: run-batch-dot-bat
       run: |
         dir
-        build.bat
+        ./build.bat
