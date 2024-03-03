@@ -35,5 +35,5 @@ jobs:
     # Install the .NET Core workload
     - name: run-batch-dot-bat
       run: |
-        pwd
+        dir
         batch.bat
