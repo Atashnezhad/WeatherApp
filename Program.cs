@@ -43,7 +43,8 @@ namespace ConsoleApp1
                     MyDataClass.WeatherObject weatherObject =
                         JsonSerializer.Deserialize<MyDataClass.WeatherObject>(weatherData);
                     // now save the parsed data in a new JSON file in the resources folder
-                    string newJsonFilePath = Path.Combine(parentDirectory, "resources", "weather_data.json");
+                    // string newJsonFilePath = Path.Combine(parentDirectory, "resources", "weather_data.json");
+                    string newJsonFilePath = "C:\\Users\\atash\\RiderProjects\\ConsoleApp1\\resources\\weather_data.json";
                     File.WriteAllText(newJsonFilePath, weatherData);
                 }
                 catch (Exception ex)
